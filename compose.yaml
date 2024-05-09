@@ -1,0 +1,41 @@
+version: '3.3'
+# services:
+#   mysql:
+#     container_name: mysql
+#     image: mysql:8.0
+#     volumes:
+#       - mysql-db:/var/lib/mysqlticketdatabase
+#     restart: always
+#     environment:
+#       MYSQL_DATABASE: ticket
+#       MYSQL_ROOT_PASSWORD: Ashish
+#     ports:
+#       # <Port exposed> : < MySQL Port running inside container>
+#       - 3306:3306
+#     expose:
+#       # Opens port 3307 on the container
+#       - '3306'
+#   # Names our volume
+
+
+#   ticketbackend:
+#     image: ashish2429/ticketbackend:1.0
+#     # restart: on-failure
+#     container_name: ticketbackend
+#     ports:
+#       - 8080:8080
+#     #  volumes:
+#     stdin_open: true
+#     # - .m2:/root/.m2
+#     tty: true
+
+#   ticketfrontend:
+#     # <Port exposed> : < MySQL Port running inside container>
+#     image: ashish2429/ticketfrontend:1.0
+#     # - app
+#     container_name: ticketfrontend
+#     ports:
+#       - 5200:80
+
+# volumes:
+#   mysql-db: null
