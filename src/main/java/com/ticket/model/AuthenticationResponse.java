@@ -26,7 +26,6 @@ public class AuthenticationResponse {
 
 	private String companyId;
 
-	private String supportidentifier;
 
 	public String getName() {
 		return name;
@@ -92,13 +91,6 @@ public class AuthenticationResponse {
 		this.companyId = companyId;
 	}
 
-	public String getSupportidentifier() {
-		return supportidentifier;
-	}
-
-	public void setSupportidentifier(String supportidentifier) {
-		this.supportidentifier = supportidentifier;
-	}
 
 	public AuthenticationResponse(User user, String token) {
 		super();
@@ -110,7 +102,6 @@ public class AuthenticationResponse {
 		this.token = token;
 		this.employeeId = user.getEmployeeId();
 		this.companyId = user.getCompanyId();
-		this.supportidentifier = user.getSupportidentifier();
 	}
 
 }

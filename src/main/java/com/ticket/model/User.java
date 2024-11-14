@@ -1,16 +1,15 @@
 package com.ticket.model;
 
-import java.sql.Timestamp;
-import java.time.Instant;
 import java.util.Collection;
 import java.util.List;
-import java.util.Random;
 
-import org.springframework.data.annotation.CreatedDate;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
+
+import com.ticket.Util.DateTime;
+import com.ticket.Util.RandomNumber;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -53,7 +52,7 @@ public class User implements UserDetails {
 	private String userName;
 
 	@Column(name = "employeeId", unique = true)
-	private String employeeId = genrateEmployeeId();
+	private String employeeId = RandomNumber.randomNumber();
 
 	@Column(name = "email", unique = true)
 	private String email;
@@ -64,25 +63,20 @@ public class User implements UserDetails {
 	@Enumerated(EnumType.ORDINAL)
 	private UserRole role = UserRole.USER;
 
-	@Column(name = "createdby")
-	private String createdby;
+	@Column(name = "createdBy")
+	private String createdBy;
 
-	@CreatedDate
 	@Column(nullable = false)
-	private Timestamp created_timestamp = new Timestamp(Instant.now().toEpochMilli());
+	private String creationTime = DateTime.dateTime();
 
-	@Column(name = "lastupdatedby")
-	private String lastupdatedby;
+	@Column(name = "lastUpdatedBy")
+	private String lastUpdatedBy;
 
-	@Column(name = "supportidentifier")
-	private String supportidentifier = genrateIdentifier();
-
-	@CreatedDate
 	@Column(nullable = false)
-	private Timestamp last_updated_timestamp = new Timestamp(Instant.now().toEpochMilli());
+	private String lastUpdatedTime = DateTime.dateTime();
 
 	@Enumerated(EnumType.ORDINAL)
-	private UserServiceType servicetype = UserServiceType.NON_TECHNICAL;
+	private UserServiceType serviceType = UserServiceType.NON_TECHNICAL;
 
 	@Column(name = "companyId")
 	private String companyId;
@@ -155,52 +149,44 @@ public class User implements UserDetails {
 		this.role = role;
 	}
 
-	public String getCreatedby() {
-		return createdby;
+	public String getCreatedBy() {
+		return createdBy;
 	}
 
-	public void setCreatedby(String createdby) {
-		this.createdby = createdby;
+	public void setCreatedBy(String createdBy) {
+		this.createdBy = createdBy;
 	}
 
-	public Timestamp getCreated_timestamp() {
-		return created_timestamp;
+	public String getCreationTime() {
+		return creationTime;
 	}
 
-	public void setCreated_timestamp(Timestamp created_timestamp) {
-		this.created_timestamp = created_timestamp;
+	public void setCreationTime(String creationTime) {
+		this.creationTime = creationTime;
 	}
 
-	public String getLastupdatedby() {
-		return lastupdatedby;
+	public String getLastUpdatedBy() {
+		return lastUpdatedBy;
 	}
 
-	public void setLastupdatedby(String lastupdatedby) {
-		this.lastupdatedby = lastupdatedby;
+	public void setLastUpdatedBy(String lastUpdatedBy) {
+		this.lastUpdatedBy = lastUpdatedBy;
 	}
 
-	public String getSupportidentifier() {
-		return supportidentifier;
+	public String getLastUpdatedTime() {
+		return lastUpdatedTime;
 	}
 
-	public void setSupportidentifier(String supportidentifier) {
-		this.supportidentifier = supportidentifier;
+	public void setLastUpdatedTime(String lastUpdatedTime) {
+		this.lastUpdatedTime = lastUpdatedTime;
 	}
 
-	public Timestamp getLast_updated_timestamp() {
-		return last_updated_timestamp;
+	public UserServiceType getServiceType() {
+		return serviceType;
 	}
 
-	public void setLast_updated_timestamp(Timestamp last_updated_timestamp) {
-		this.last_updated_timestamp = last_updated_timestamp;
-	}
-
-	public UserServiceType getServicetype() {
-		return servicetype;
-	}
-
-	public void setServicetype(UserServiceType servicetype) {
-		this.servicetype = servicetype;
+	public void setServiceType(UserServiceType serviceType) {
+		this.serviceType = serviceType;
 	}
 
 	public String getCompanyId() {
@@ -215,33 +201,13 @@ public class User implements UserDetails {
 		return serialVersionUID;
 	}
 
-	public String genrateEmployeeId() {
-
-		Random random = new Random();
-		long minRange = 1000000000L; // Minimum range (inclusive)
-		long maxRange = 9999999999L; // Maximum range (inclusive)
-		long randomNumber = random.nextLong(maxRange - minRange + 1) + minRange;
-		return Long.toString(randomNumber);
-
-	}
-
-	public String genrateIdentifier() {
-
-		Random random = new Random();
-		long minRange = 1000000000L; // Minimum range (inclusive)
-		long maxRange = 9999999999L; // Maximum range (inclusive)
-		long randomNumber = random.nextLong(maxRange - minRange + 1) + minRange;
-		return Long.toString(randomNumber);
-
-	}
-
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", name=" + name + ", password=" + password + ", userName=" + userName
 				+ ", employeeId=" + employeeId + ", email=" + email + ", contact=" + contact + ", role=" + role
-				+ ", createdby=" + createdby + ", created_timestamp=" + created_timestamp + ", lastupdatedby="
-				+ lastupdatedby + ", supportidentifier=" + supportidentifier + ", last_updated_timestamp="
-				+ last_updated_timestamp + ", servicetype=" + servicetype + ", companyId=" + companyId + "]";
+				+ ", createdBy=" + createdBy + ", creationTime=" + creationTime + ", lastUpdatedBy=" + lastUpdatedBy
+				+ ", lastUpdatedTime=" + lastUpdatedTime + ", serviceType=" + serviceType + ", companyId=" + companyId
+				+ "]";
 	}
 
 	@Override

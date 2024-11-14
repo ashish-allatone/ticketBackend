@@ -1,10 +1,7 @@
 package com.ticket.model;
 
-import java.sql.Timestamp;
-import java.time.Instant;
-import java.util.Random;
-
-import org.springframework.data.annotation.CreatedDate;
+import com.ticket.Util.DateTime;
+import com.ticket.Util.RandomNumber;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -22,14 +19,8 @@ public class CompanyDetails {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 
-	@Column(name = "street")
-	private String street;
-
-	@Column(name = "landmark")
-	private String landmark;
-
-	@Column(name = "officeapartment")
-	private String officeapartment;
+	@Column(name = "officeApartment")
+	private String officeApartment;
 
 	@Column(name = "city")
 	private String city;
@@ -37,45 +28,35 @@ public class CompanyDetails {
 	@Column(name = "state")
 	private String state;
 
-	@Column(name = "pincode")
+	@Column(name = "pinCode")
 	private String pinCode;
 
 	@Column(name = "country")
 	private String country;
 
-	@Column(name = "companyname")
-	private String companyname;
+	@Column(name = "companyName")
+	private String companyName;
 
-	@Column(name = "gstnumber", unique = true)
-	private String gstnumber;
-
-	@Column(name = "companyownername")
-	private String companyownername;
-
-	@Column(name = "companycontactno")
-	private String companycontactno;
-
-	@Column(name = "pannumber", unique = true)
-	private String pannumber;
+	@Column(name = "primaryContactNumber")
+	private String primaryContactNumber;
 
 	@Column(name = "email")
 	private String email;
 
-	@Column(name = "companyemail")
-	private String companyemail;
+	@Column(name = "createdBy")
+	private String createdBy;
 
-	@Column(name = "companyownercontact")
-	private String companyownercontact;
+	@Column(name = "lastUpdatedBy")
+	private String lastUpdatedBy;
 
-	@Column(name = "createdby")
-	private String createdby;
-
-	@CreatedDate
 	@Column(nullable = false)
-	private Timestamp last_updated_timestamp = new Timestamp(Instant.now().toEpochMilli());
+	private String creationTime = DateTime.dateTime();
+
+	@Column(nullable = false)
+	private String lastUpdationTime = DateTime.dateTime();
 
 	@Column(name = "companyId")
-	private String companyId = companyId();
+	private String companyId = RandomNumber.randomNumber();
 
 	public Integer getId() {
 		return id;
@@ -83,30 +64,6 @@ public class CompanyDetails {
 
 	public void setId(Integer id) {
 		this.id = id;
-	}
-
-	public String getStreet() {
-		return street;
-	}
-
-	public void setStreet(String street) {
-		this.street = street;
-	}
-
-	public String getLandmark() {
-		return landmark;
-	}
-
-	public void setLandmark(String landmark) {
-		this.landmark = landmark;
-	}
-
-	public String getOfficeapartment() {
-		return officeapartment;
-	}
-
-	public void setOfficeapartment(String officeapartment) {
-		this.officeapartment = officeapartment;
 	}
 
 	public String getCompanyId() {
@@ -149,38 +106,6 @@ public class CompanyDetails {
 		this.country = country;
 	}
 
-	public String getCompanyname() {
-		return companyname;
-	}
-
-	public void setCompanyname(String companyname) {
-		this.companyname = companyname;
-	}
-
-	public String getGstnumber() {
-		return gstnumber;
-	}
-
-	public void setGstnumber(String gstnumber) {
-		this.gstnumber = gstnumber;
-	}
-
-	public String getCompanyownername() {
-		return companyownername;
-	}
-
-	public void setCompanyownername(String companyownername) {
-		this.companyownername = companyownername;
-	}
-
-	public String getPannumber() {
-		return pannumber;
-	}
-
-	public void setPannumber(String pannumber) {
-		this.pannumber = pannumber;
-	}
-
 	public String getEmail() {
 		return email;
 	}
@@ -189,65 +114,71 @@ public class CompanyDetails {
 		this.email = email;
 	}
 
-	public String getCompanyemail() {
-		return companyemail;
+	public String getCreatedBy() {
+		return createdBy;
 	}
 
-	public void setCompanyemail(String companyemail) {
-		this.companyemail = companyemail;
+	public void setCreatedBy(String createdBy) {
+		this.createdBy = createdBy;
 	}
 
-	public String getCompanyownercontact() {
-		return companyownercontact;
+	public String getOfficeApartment() {
+		return officeApartment;
 	}
 
-	public void setCompanyownercontact(String companyownercontact) {
-		this.companyownercontact = companyownercontact;
+	public void setOfficeApartment(String officeApartment) {
+		this.officeApartment = officeApartment;
 	}
 
-	public String getCreatedby() {
-		return createdby;
+	public String getCompanyName() {
+		return companyName;
 	}
 
-	public void setCreatedby(String createdby) {
-		this.createdby = createdby;
+	public void setCompanyName(String companyName) {
+		this.companyName = companyName;
 	}
 
-	public Timestamp getLast_updated_timestamp() {
-		return last_updated_timestamp;
+	public String getLastUpdatedBy() {
+		return lastUpdatedBy;
 	}
 
-	public void setLast_updated_timestamp(Timestamp last_updated_timestamp) {
-		this.last_updated_timestamp = last_updated_timestamp;
+	public void setLastUpdatedBy(String lastUpdatedBy) {
+		this.lastUpdatedBy = lastUpdatedBy;
 	}
 
-	public String getCompanycontactno() {
-		return companycontactno;
+	public String getPrimaryContactNumber() {
+		return primaryContactNumber;
 	}
 
-	public void setCompanycontactno(String companycontactno) {
-		this.companycontactno = companycontactno;
+	public void setPrimaryContactNumber(String primaryContactNumber) {
+		this.primaryContactNumber = primaryContactNumber;
 	}
 
-	public String companyId() {
-
-		Random random = new Random();
-		long minRange = 1000000000L; // Minimum range (inclusive)
-		long maxRange = 9999999999L; // Maximum range (inclusive)
-		long randomNumber = random.nextLong(maxRange - minRange + 1) + minRange;
-		return Long.toString(randomNumber);
-
+	public String getCreationTime() {
+		return creationTime;
 	}
+
+	public void setCreationTime(String creationTime) {
+		this.creationTime = creationTime;
+	}
+
+	public String getLastUpdationTime() {
+		return lastUpdationTime;
+	}
+
+	public void setLastUpdationTime(String lastUpdationTime) {
+		this.lastUpdationTime = lastUpdationTime;
+	}
+
+	
 
 	@Override
 	public String toString() {
-		return "CompanyDetails [id=" + id + ", street=" + street + ", landmark=" + landmark + ", officeapartment="
-				+ officeapartment + ", city=" + city + ", state=" + state + ", pinCode=" + pinCode + ", country="
-				+ country + ", companyname=" + companyname + ", gstnumber=" + gstnumber + ", companyownername="
-				+ companyownername + ", companycontactno=" + companycontactno + ", pannumber=" + pannumber + ", email="
-				+ email + ", companyemail=" + companyemail + ", companyownercontact=" + companyownercontact
-				+ ", createdby=" + createdby + ", last_updated_timestamp=" + last_updated_timestamp + ", companyId="
-				+ companyId + "]";
+		return "CompanyDetails [id=" + id + ", officeApartment=" + officeApartment + ", city=" + city + ", state="
+				+ state + ", pinCode=" + pinCode + ", country=" + country + ", companyName=" + companyName
+				+ ", primaryContactNumber=" + primaryContactNumber + ", email=" + email + ", createdBy=" + createdBy
+				+ ", lastUpdatedBy=" + lastUpdatedBy + ", creationTime=" + creationTime + ", lastUpdationTime="
+				+ lastUpdationTime + ", companyId=" + companyId + "]";
 	}
 
 	public CompanyDetails() {

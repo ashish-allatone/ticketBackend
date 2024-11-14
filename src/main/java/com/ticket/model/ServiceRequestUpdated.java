@@ -1,9 +1,8 @@
 package com.ticket.model;
 
-import java.sql.Timestamp;
-import java.time.Instant;
-
 import org.springframework.data.annotation.CreatedDate;
+
+import com.ticket.Util.DateTime;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -36,7 +35,7 @@ public class ServiceRequestUpdated {
 
 	@CreatedDate
 	@Column(nullable = false)
-	private Timestamp last_updated_timestamp = new Timestamp(Instant.now().toEpochMilli());
+	private String last_updated_timestamp = DateTime.dateTime();
 
 	@Column(name = "content")
 	private String content;
@@ -84,11 +83,11 @@ public class ServiceRequestUpdated {
 		this.problemsummary = problemsummary;
 	}
 
-	public Timestamp getLast_updated_timestamp() {
+	public String getLast_updated_timestamp() {
 		return last_updated_timestamp;
 	}
 
-	public void setLast_updated_timestamp(Timestamp last_updated_timestamp) {
+	public void setLast_updated_timestamp(String last_updated_timestamp) {
 		this.last_updated_timestamp = last_updated_timestamp;
 	}
 
