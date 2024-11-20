@@ -23,7 +23,7 @@ public class SecurityConfig {
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		http.cors().and().csrf().disable().authorizeHttpRequests()
-				.requestMatchers("/login", "/validateOtp", "/EmployeeInfo/{employeeId}", "/CompanyDetails",
+				.requestMatchers("/login", "/validateOtp", "/register", "/CompanyDetails",
 						"/matchKey/{localSecretKey}","/resendOtp/{userName}/{email}")
 				.permitAll().anyRequest().authenticated().and().sessionManagement()
 				.sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().authenticationProvider(authProvider)

@@ -1,9 +1,6 @@
 package com.ticket.model;
 
-import java.sql.Timestamp;
-import java.time.Instant;
-
-import org.springframework.data.annotation.CreatedDate;
+import com.ticket.Util.DateTime;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -22,21 +19,20 @@ public class ServiceRequestUpdated {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 
-	@Column(name = "sr_no")
-	private String sr_no;
+	@Column(name = "serviceRequestNumber")
+	private String serviceRequestNumber;
 
-	@Column(name = "username")
-	private String username;
+	@Column(name = "userName")
+	private String userName;
 
 	@Column(name = "employeeId")
 	private String employeeId;
 
-	@Column(name = "problemsummary")
-	private String problemsummary;
+	@Column(name = "problemSummary")
+	private String problemSummary;
 
-	@CreatedDate
 	@Column(nullable = false)
-	private Timestamp last_updated_timestamp = new Timestamp(Instant.now().toEpochMilli());
+	private String lastUpdatedTime = DateTime.dateTime();
 
 	@Column(name = "content")
 	private String content;
@@ -52,22 +48,6 @@ public class ServiceRequestUpdated {
 		this.id = id;
 	}
 
-	public String getSr_no() {
-		return sr_no;
-	}
-
-	public void setSr_no(String sr_no) {
-		this.sr_no = sr_no;
-	}
-
-	public String getUsername() {
-		return username;
-	}
-
-	public void setUsername(String username) {
-		this.username = username;
-	}
-
 	public String getEmployeeId() {
 		return employeeId;
 	}
@@ -76,20 +56,12 @@ public class ServiceRequestUpdated {
 		this.employeeId = employeeId;
 	}
 
-	public String getProblemsummary() {
-		return problemsummary;
+	public String getLastUpdatedTime() {
+		return lastUpdatedTime;
 	}
 
-	public void setProblemsummary(String problemsummary) {
-		this.problemsummary = problemsummary;
-	}
-
-	public Timestamp getLast_updated_timestamp() {
-		return last_updated_timestamp;
-	}
-
-	public void setLast_updated_timestamp(Timestamp last_updated_timestamp) {
-		this.last_updated_timestamp = last_updated_timestamp;
+	public void setLastUpdatedTime(String lastUpdatedTime) {
+		this.lastUpdatedTime = lastUpdatedTime;
 	}
 
 	public String getContent() {
@@ -108,11 +80,35 @@ public class ServiceRequestUpdated {
 		this.companyId = companyId;
 	}
 
+	public String getServiceRequestNumber() {
+		return serviceRequestNumber;
+	}
+
+	public void setServiceRequestNumber(String serviceRequestNumber) {
+		this.serviceRequestNumber = serviceRequestNumber;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	public String getProblemSummary() {
+		return problemSummary;
+	}
+
+	public void setProblemSummary(String problemSummary) {
+		this.problemSummary = problemSummary;
+	}
+
 	@Override
 	public String toString() {
-		return "ServiceRequestUpdated [id=" + id + ", sr_no=" + sr_no + ", username=" + username + ", employeeId="
-				+ employeeId + ", problemsummary=" + problemsummary + ", last_updated_timestamp="
-				+ last_updated_timestamp + ", content=" + content + ", companyId=" + companyId + "]";
+		return "ServiceRequestUpdated [id=" + id + ", serviceRequestNumber=" + serviceRequestNumber + ", userName="
+				+ userName + ", employeeId=" + employeeId + ", problemSummary=" + problemSummary + ", lastUpdatedTime="
+				+ lastUpdatedTime + ", content=" + content + ", companyId=" + companyId + "]";
 	}
 
 	public ServiceRequestUpdated() {

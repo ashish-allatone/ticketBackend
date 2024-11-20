@@ -8,7 +8,7 @@ import com.ticket.model.CompanyDetails;
 @Repository
 public interface CompanyDetailsRepository extends CrudRepository<CompanyDetails, Integer> {
 
-	CompanyDetails findBygstnumber(String gstnumber);
+//	CompanyDetails findBygstnumber(String gstnumber);
 
 	CompanyDetails findByCompanyId(String companyId);
 

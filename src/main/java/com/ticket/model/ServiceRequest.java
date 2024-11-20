@@ -1,9 +1,7 @@
 package com.ticket.model;
 
-import org.springframework.data.annotation.CreatedDate;
-import java.sql.Timestamp;
-import java.time.Instant;
-import java.util.Random;
+import com.ticket.Util.DateTime;
+import com.ticket.Util.RandomNumber;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -43,20 +41,20 @@ public class ServiceRequest {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 
-	@Column(name = "sr_no")
-	private String sr_no = genrateTechnicalSR();
+	@Column(name = "serviceRequestNumber")
+	private String serviceRequestNumber = RandomNumber.randomNumber();
 
-	@Column(name = "problemsummary")
-	private String problemsummary;
+	@Column(name = "problemSummary")
+	private String problemSummary;
 
-	@Column(name = "problemdescreption")
-	private String problemdescreption;
+	@Column(name = "problemDescreption")
+	private String problemDescreption;
 
-	@Column(name = "errorcode")
-	private Integer errorcode;
+	@Column(name = "errorCode")
+	private Integer errorCode;
 
 	@Enumerated(EnumType.ORDINAL)
-	private UserIssueType issuetype = UserIssueType.DATABASE;
+	private UserIssueType issueType = UserIssueType.DATABASE;
 
 	@Enumerated(EnumType.ORDINAL)
 	private UserEnvironment environment = UserEnvironment.DEVELOPMENT;
@@ -70,15 +68,11 @@ public class ServiceRequest {
 	@Enumerated(EnumType.ORDINAL)
 	private BusinessImpact businessImpact = BusinessImpact.NON_TECHNICAL;
 
-	@CreatedDate
 	@Column(nullable = false)
-	private Timestamp last_updated_timestamp = new Timestamp(Instant.now().toEpochMilli());
+	private String lastUpdatedTime = DateTime.dateTime();
 
-	@Column(name = "lastupdatedby")
-	private String lastupdatedby;
-
-	@Column(name = "supportidentifier")
-	private String supportidentifier;
+	@Column(name = "lastUpdatedBy")
+	private String lastUpdatedBy;
 
 	@Column(name = "contact")
 	private String contact;
@@ -97,44 +91,84 @@ public class ServiceRequest {
 		this.id = id;
 	}
 
-	public String getSr_no() {
-		return sr_no;
+	public String getLastUpdatedTime() {
+		return lastUpdatedTime;
 	}
 
-	public void setSr_no(String sr_no) {
-		this.sr_no = sr_no;
+	public void setLastUpdatedTime(String lastUpdatedTime) {
+		this.lastUpdatedTime = lastUpdatedTime;
 	}
 
-	public String getProblemsummary() {
-		return problemsummary;
+	public String getLastUpdatedBy() {
+		return lastUpdatedBy;
 	}
 
-	public void setProblemsummary(String problemsummary) {
-		this.problemsummary = problemsummary;
+	public void setLastUpdatedBy(String lastUpdatedBy) {
+		this.lastUpdatedBy = lastUpdatedBy;
 	}
 
-	public String getProblemdescreption() {
-		return problemdescreption;
+	public String getContact() {
+		return contact;
 	}
 
-	public void setProblemdescreption(String problemdescreption) {
-		this.problemdescreption = problemdescreption;
+	public void setContact(String contact) {
+		this.contact = contact;
 	}
 
-	public Integer getErrorcode() {
-		return errorcode;
+	public String getCompanyId() {
+		return companyId;
 	}
 
-	public void setErrorcode(Integer errorcode) {
-		this.errorcode = errorcode;
+	public void setCompanyId(String companyId) {
+		this.companyId = companyId;
 	}
 
-	public UserIssueType getIssuetype() {
-		return issuetype;
+	public String getAssignToUserName() {
+		return assignToUserName;
 	}
 
-	public void setIssuetype(UserIssueType issuetype) {
-		this.issuetype = issuetype;
+	public void setAssignToUserName(String assignToUserName) {
+		this.assignToUserName = assignToUserName;
+	}
+
+	public String getServiceRequestNumber() {
+		return serviceRequestNumber;
+	}
+
+	public void setServiceRequestNumber(String serviceRequestNumber) {
+		this.serviceRequestNumber = serviceRequestNumber;
+	}
+
+	public String getProblemSummary() {
+		return problemSummary;
+	}
+
+	public void setProblemSummary(String problemSummary) {
+		this.problemSummary = problemSummary;
+	}
+
+	public String getProblemDescreption() {
+		return problemDescreption;
+	}
+
+	public void setProblemDescreption(String problemDescreption) {
+		this.problemDescreption = problemDescreption;
+	}
+
+	public Integer getErrorCode() {
+		return errorCode;
+	}
+
+	public void setErrorCode(Integer errorCode) {
+		this.errorCode = errorCode;
+	}
+
+	public UserIssueType getIssueType() {
+		return issueType;
+	}
+
+	public void setIssueType(UserIssueType issueType) {
+		this.issueType = issueType;
 	}
 
 	public UserEnvironment getEnvironment() {
@@ -169,72 +203,14 @@ public class ServiceRequest {
 		this.businessImpact = businessImpact;
 	}
 
-	public Timestamp getLast_updated_timestamp() {
-		return last_updated_timestamp;
-	}
-
-	public void setLast_updated_timestamp(Timestamp last_updated_timestamp) {
-		this.last_updated_timestamp = last_updated_timestamp;
-	}
-
-	public String getLastupdatedby() {
-		return lastupdatedby;
-	}
-
-	public void setLastupdatedby(String lastupdatedby) {
-		this.lastupdatedby = lastupdatedby;
-	}
-
-	public String getSupportidentifier() {
-		return supportidentifier;
-	}
-
-	public void setSupportidentifier(String supportidentifier) {
-		this.supportidentifier = supportidentifier;
-	}
-
-	public String getContact() {
-		return contact;
-	}
-
-	public void setContact(String contact) {
-		this.contact = contact;
-	}
-
-	public String getCompanyId() {
-		return companyId;
-	}
-
-	public void setCompanyId(String companyId) {
-		this.companyId = companyId;
-	}
-
-	public String getAssignToUserName() {
-		return assignToUserName;
-	}
-
-	public void setAssignToUserName(String assignToUserName) {
-		this.assignToUserName = assignToUserName;
-	}
-
 	@Override
 	public String toString() {
-		return "ServiceRequest [id=" + id + ", sr_no=" + sr_no + ", problemsummary=" + problemsummary
-				+ ", problemdescreption=" + problemdescreption + ", errorcode=" + errorcode + ", issuetype=" + issuetype
-				+ ", environment=" + environment + ", sevirity=" + sevirity + ", status=" + status + ", businessImpact="
-				+ businessImpact + ", last_updated_timestamp=" + last_updated_timestamp + ", lastupdatedby="
-				+ lastupdatedby + ", supportidentifier=" + supportidentifier + ", contact=" + contact + ", companyId="
-				+ companyId + ", assignToUserName=" + assignToUserName + "]";
-	}
-
-	public String genrateTechnicalSR() {
-
-		Random random = new Random();
-		long minRange = 1000000000L; // Minimum range (inclusive)
-		long maxRange = 9999999999L; // Maximum range (inclusive)
-		long randomNumber = random.nextLong(maxRange - minRange + 1) + minRange;
-		return Long.toString(randomNumber);
-
+		return "ServiceRequest [id=" + id + ", serviceRequestNumber=" + serviceRequestNumber + ", problemSummary="
+				+ problemSummary + ", problemDescreption=" + problemDescreption + ", errorCode=" + errorCode
+				+ ", issueType=" + issueType + ", environment=" + environment + ", sevirity=" + sevirity + ", status="
+				+ status + ", businessImpact=" + businessImpact + ", lastUpdatedTime=" + lastUpdatedTime
+				+ ", lastUpdatedBy=" + lastUpdatedBy + ", contact=" + contact + ", companyId=" + companyId
+				+ ", assignToUserName=" + assignToUserName + "]";
 	}
 
 	public ServiceRequest() {

@@ -12,8 +12,6 @@ public class UserResponse {
 
 	private String belong;
 
-	private String supportidentifier;
-
 	private String contact;
 
 	private String lastUpdateBy;
@@ -58,14 +56,6 @@ public class UserResponse {
 		this.belong = belong;
 	}
 
-	public String getSupportidentifier() {
-		return supportidentifier;
-	}
-
-	public void setSupportidentifier(String supportidentifier) {
-		this.supportidentifier = supportidentifier;
-	}
-
 	public String getContact() {
 		return contact;
 	}
@@ -89,7 +79,7 @@ public class UserResponse {
 	@Override
 	public String toString() {
 		return "UserResponse [name=" + name + ", email=" + email + ", userName=" + userName + ", role=" + role
-				+ ", belong=" + belong + ", supportidentifier=" + supportidentifier + ", contact=" + contact
+				+ ", belong=" + belong + ", contact=" + contact
 				+ ", lastUpdateBy=" + lastUpdateBy + "]";
 	}
 
